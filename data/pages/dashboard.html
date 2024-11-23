@@ -1,0 +1,72 @@
+<style>
+    .panel {
+        box-shadow: 0 2px 0 rgba(0,0,0,0.05);
+        border-radius: 0;
+        border: 0;
+        margin-bottom: 24px;
+    }
+    .panel-info.panel-colorful {
+        background-color: #4ebcda;
+        border-color: #4ebcda;
+        color: #fff;
+    }
+    .panel-danger.panel-colorful {
+        background-color: #f76c51;
+        border-color: #f76c51;
+        color: #fff;
+    }
+
+    .panel-primary.panel-colorful {
+      background-color: #5fa2dd;
+      border-color: #5fa2dd;
+      color: #fff;
+    }
+    .panel-custom.panel-colorful {
+      background-color: #addd5f;
+      border-color: #addd5f;
+      color: #ffffff;
+    }
+</style>
+
+<link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+<div class="container bootstrap snippets bootdey">
+    <div class="row">
+        <div class="col-md-3 col-sm-6 col-xs-12">
+            <div class="panel panel-info panel-colorful">
+                <div class="panel-body text-center">
+                    <p class="text-uppercase mar-btm text-sm"><b>Temperatura Interna</b></p>
+                    <h2><b>{{TEMP}} °C</b></h2>
+                    <hr>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3 col-sm-6 col-xs-12">
+        	<div class="panel panel-primary panel-colorful">
+        		<div class="panel-body text-center">
+        			<p class="text-uppercase mar-btm text-sm"><b>Espaço Total em Disco</b></p>
+        			<h2><b>{{totalBytes}} KB</b></h2>
+        			<hr>
+        		</div>
+        	</div>
+        </div>
+        <div class="col-md-3 col-sm-6 col-xs-12">
+        	<div class="panel panel-danger panel-colorful">
+        		<div class="panel-body text-center">
+        			<p class="text-uppercase mar-btm text-sm"><b>Espaço Usado em Disco</b></p>
+        			<h2><b>{{usedBytes}} KB</b></h2>
+        			<hr>
+        		</div>
+        	</div>
+        </div>
+        <div class="col-md-3 col-sm-6 col-xs-12">
+        	<div class="panel panel-custom panel-colorful">
+        		<div class="panel-body text-center">
+        			<p class="text-uppercase mar-btm text-sm"><b>Espaço Livre em Disco</b></p>
+        			<h2><b>{{availableBytes}} KB</b></h2>
+        			<hr>
+        		</div>
+        	</div>
+        </div>
+    </div>
+</div>
+

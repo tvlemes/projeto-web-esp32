@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <style> 
+        #sidebar {
+            height: 100vh;
+            overflow-y: auto;
+            display: none;
+        }
+        .content {
+            padding-top: 20px;
+        }
+        #sidebar.show {
+            display: block; /* Quando a classe 'show' é adicionada, o menu é exibido */
+        }
+    </style>
+    <title>Home ESP32</title>
+</head>
+<body>
+    <nav class="navbar navbar-expand-xg " style="background-color: #5483a5;">
+        <div class="container-fluid">
+            <button class="navbar-toggler" type="button" id="sidebarToggle">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <a class="navbar-brand ms-3" href="#">Dashboard - Thiago Lemes</a>
+        </div>
+    </nav>
+    
+    <!-- Container Principal -->
+    <div class="container-fluid">
+        <div class="row">
+            <!-- Sidebar será inserida dinamicamente aqui -->
+            <div id="menu-container" class="col-md-3 col-lg-2 d-md-block bg-light sidebar"></div>
+            
+            <!-- Conteúdo Principal -->
+            <main id="main-content" class="col-md-9 ms-sm-auto col-lg-10 px-md-4 content">
+                <h1>Bem-vindo!</h1>
+                <p>Está é a página principal</p>
+            </main>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS e Popper.js -->
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
+
+    <!-- Importa os dados do menu e o script principal do menu -->
+    <script>
+
+
+    // Itens do Menu
+    // ******************************************************************************
+        const menuItems = [
+            { name: 'Dashboard', contentFile: '/pages/dashboard.html' },
+            { name: 'Listar', contentFile: '/pages/listar.html' },
+            { name: 'Cadastrar', contentFile: '/pages/cadastrar.html' },
+            // { name: 'Clientes', contentFile: 'content/clientes.html' },
+        ];
+    // ******************************************************************************
+    
+
+    // Criação do Menu
+    // ******************************************************************************
+        // Referências aos elementos da página
+        const menuContainer = document.getElementById('menu-container');
+        const mainContent = document.getElementById('main-content');
+        const sidebarToggle = document.getElementById('sidebarToggle');
+            
+        // Função para criar o menu dinâmico
+        function createSidebarMenu() {
+            // Cria a estrutura HTML do menu com base nos itens do array
+                const sidebarHTML = `
+                    <nav id="sidebar" class="position-sticky pt-3">
+                        <ul class="nav flex-column">
+                            ${menuItems.map((item, index) => `
+                                <li class="nav-item">
+                                    <a href="#" class="nav-link" onclick="loadContent('${item.contentFile}')">${item.name}</a>
+                                </li>
+                            `).join('')}
+                        </ul>
+                    </nav>
+                `;
+                // Insere o menu no container
+                menuContainer.innerHTML = sidebarHTML;
+        }
+    // ******************************************************************************        
+
+
+
+    // Criação do Conteúdo Principal
+    // ******************************************************************************        
+        // Função para carregar o conteúdo no container principal
+        window.loadContent = function(contentFile) {
+            fetch(contentFile)
+                .then(response => response.text())
+                .then(data => {
+                    mainContent.innerHTML = data; // Insere o conteúdo HTML no container principal
+                })
+                .catch(error => {
+                    console.error("Erro ao carregar o conteúdo:", error);
+                    mainContent.innerHTML = "<p>Erro ao carregar o conteúdo.</p>";
+                });
+            
+            // Fecha o menu ao carregar o conteúdo
+            hideSidebar();
+        };
+    // ******************************************************************************
+    
+    
+    // Funções do Sidebar
+    // ******************************************************************************
+        // Função para alternar a visibilidade da sidebar
+        function toggleSidebar() {
+            const sidebar = document.getElementById('sidebar');
+            sidebar.classList.toggle('show');
+        }
+    
+        // Função para esconder o menu
+        function hideSidebar() {
+            const sidebar = document.getElementById('sidebar');
+            sidebar.classList.remove('show'); // Esconde o menu
+        }
+    
+        // Cria o menu ao carregar a página
+        createSidebarMenu();
+    
+        // Adiciona evento ao botão para alternar o menu
+        sidebarToggle.addEventListener('click', toggleSidebar);
+    // ******************************************************************************
+
+    // Funções para ler o arquivo HTML
+    // ******************************************************************************
+        // function readFile(){
+        //     const filePath = path.join(__dirname, './dashboard.html');
+    
+        //     // Lê o arquivo HTML
+        //     fs.readFile(filePath, 'utf8', (err, data) => {
+        //       if (err) {
+        //         // Caso haja erro ao ler o arquivo, retorna um erro 500
+        //         res.statusCode = 500;
+        //         res.end('Erro ao ler o arquivo');
+        //       } else {
+        //         // Caso o arquivo seja lido com sucesso, envia o conteúdo como resposta
+        //         res.statusCode = 200;
+        //         res.setHeader('Content-Type', 'text/html');
+        //         res.end(data);
+        //       } 
+        //     });
+        // }
+    </script>
+</body>
+</html>
