@@ -8,7 +8,7 @@
       <a href="#objetivo">Objetivo</a>
     </li>
     <li>
-      <a href="#pastas-e-arquivos">Pastas</a>
+      <a href="#pastas-e-arquivos">Pastas e Arquivos</a>
     </li>
     <li>
       <a href="#sobre">Sobre</a>
@@ -36,9 +36,9 @@ A estrutura básica das pastas são:
 
 Os arquivos contidos na pasta <b>/src</b> são:
 
-* main.cpp - arquivo principal;
-* routes.cpp - arquivo de rotas para navegação das página Web;
-* utils - contém duas funções. A primeira é para capturar a temperatura interna do <b>ESP32</b> e a segunda é para capturar o tamanho do armazenamento interno e utilizado.
+* <b>main.cpp</b> - arquivo principal;
+* <b>routes.cpp</b> - arquivo de rotas para navegação das página Web;
+* <b>utils</b> - contém duas funções. A primeira é para capturar a temperatura interna do <b>ESP32</b> e a segunda é para capturar o tamanho do armazenamento interno e utilizado.
 
 <!-- sobre -->
 ## Sobre
